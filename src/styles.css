@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* custom */
+html,body,#root { height:100%; }
+body { background-color: #0a192f; color: #fff; font-family: Inter, ui-sans-serif, system-ui; }
+.text-gold { color: #EAB308; }
+.bg-navy { background-color: #0a192f; }
+.card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 1rem; padding: 1.25rem; }
