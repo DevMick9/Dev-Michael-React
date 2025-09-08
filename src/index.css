@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🔥 Global styles for your site */
+@layer base {
+  body {
+    @apply bg-navy text-gold font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-gold;
+  }
+
+  p {
+    @apply text-gold/90; /* slightly softer gold for paragraphs */
+  }
+
+  a {
+    @apply text-gold hover:text-gold-dark transition;
+  }
+}
+
+/* 🎨 Reusable components */
+@layer components {
+  .btn {
+    @apply bg-gold text-navy font-heading font-semibold px-6 py-3 rounded-2xl shadow-lg hover:bg-gold-dark hover:scale-105 transition-transform;
+  }
+
+  .btn-outline {
+    @apply border-2 border-gold text-gold px-6 py-3 rounded-2xl font-heading font-semibold hover:bg-gold hover:text-navy transition;
+  }
+
+  .card {
+    @apply bg-navy-light text-gold rounded-2xl shadow-lg p-6 hover:shadow-xl transition;
+  }
+
+  .section {
+    @apply py-16 px-6 md:px-12;
+  }
+}
+html {
+  scroll-behavior: smooth;
+}
