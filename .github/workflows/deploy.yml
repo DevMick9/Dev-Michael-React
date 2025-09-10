@@ -1,16 +1,22 @@
-name: Deploy to GitHub Pages
+name: Build & Deploy Vite site to GitHub Pages
+
+# Give Actions the permissions needed for Pages deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 on:
   push:
     branches:
-      - main   # 👈 change if your default branch is "master"
+      - main   # <-- change to "master" if your default branch is master
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -18,8 +24,16 @@ jobs:
         with:
           node-version: 18
 
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build project
         run: npm run build
@@ -29,3 +43,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          publish_branch: gh-pages
+          
